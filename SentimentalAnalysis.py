@@ -11,6 +11,9 @@ sia = SentimentIntensityAnalyzer()
 # Load the data
 df = pd.read_csv('DataMining/GartnerData.csv', sep='|', lineterminator='\n', header=0)
 df = df.drop_duplicates()
+df.columns = ['Rate','Date','Product_Name','User_Function','Company_Size','Industry','Title','Text']
+
+print("df : ",df)
 
 # Compute the sentiment scores for each row in the Text column
 df['Sentiment'] = df['Text'].apply(lambda x: sia.polarity_scores(x)['compound'])

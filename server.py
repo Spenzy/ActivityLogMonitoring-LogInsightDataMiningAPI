@@ -56,7 +56,7 @@ def PredictDuration():
 
     except Exception as e:
         logging.exception(e)
-        return jsonify({'error': str(e)})    
+        return jsonify({'error': str(e)})
 
 if __name__ == '__main__':
     app.run(debug=True)
