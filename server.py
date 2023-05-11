@@ -1,18 +1,21 @@
 from flask import Flask, request, jsonify
+from flask_cors import CORS
 from SentimentalAnalysis import main
 from CAH import predict as predictCAH
 from NeuralNetworks import predict as predictNN
 import logging
 
 app = Flask(__name__)
+CORS(app)
 
-# load example model
-#model = joblib.load('example_model.pkl')
+# App routes
+@app.route('/', methods=['POST'])
+def home():
+    return "Welcome to LogInsight's DataMining model API"
 
-# define endpoint for model prediction
 @app.route('/SentimentalAnalysis/', methods=['POST'])
 def SentimentalAnalysis():
-    return jsonify({'SA': main().to_json()})
+    return main()
 
 @app.route('/PredictCluster/', methods=['POST'])
 def PredictCluster():

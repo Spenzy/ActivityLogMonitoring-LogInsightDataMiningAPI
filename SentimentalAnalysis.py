@@ -23,6 +23,9 @@ print(stats)
 
 # Create a new column with sentiment categories
 df['Sentiment_Category'] = pd.cut(df['Sentiment'], bins=[-1, -0.33, 0.33, 1], labels=['Negative', 'Neutral', 'Positive'])
+print("ola ",df.head)
+
+print( df.reset_index().to_json(orient='records'))
 
 def main():
-    return df
+    return df.reset_index().to_json(orient='records')
