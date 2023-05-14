@@ -1,5 +1,2 @@
-from waitress import serve
-
-from server import app  # Replace 'server' with your Flask app module name
-
-serve(app, host='127.0.0.1', port=5000)
+bind = '127.0.0.1:8000'  # Specify the IP address and port to bind to
+workers = 4  # Number of worker processes
