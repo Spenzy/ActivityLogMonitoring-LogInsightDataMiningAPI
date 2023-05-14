@@ -1,7 +1,7 @@
 from flask import Flask, request, jsonify
 from flask_cors import CORS
 from SentimentalAnalysis import main
-from CAH import predict as predictCAH
+from CAH import predict as predictCAH, clusters
 from NeuralNetworks import predict as predictNN
 import logging
 
@@ -16,6 +16,10 @@ def home():
 @app.route('/SentimentalAnalysis/', methods=['POST'])
 def SentimentalAnalysis():
     return main()
+
+@app.route('/CAHSegmentation/', methods=['POST'])
+def CAHSegmentation():
+    return clusters()
 
 @app.route('/PredictCluster/', methods=['POST'])
 def PredictCluster():

@@ -22,6 +22,10 @@ df['Cluster'] = y_pred
 # Results
 print(df.head())
 
+def clusters():
+    return df.reset_index().to_json(orient='records')
+
+
 # Predicting clusters ( Decision Tree )
 # Pour éviter Overfitting
 df=df.sample(n=4000,random_state=42)
