@@ -7,7 +7,6 @@ from sklearn.preprocessing import MinMaxScaler
 # Import Data
 df = pd.read_csv('DataMining/DW.csv', sep='|', lineterminator='\n', header=0)
 df.columns=['Job_Duration','Data_Volume', 'Nbr_Components']
-print(df)
 
 # Normalize the data
 scaler = MinMaxScaler()
@@ -18,9 +17,6 @@ y_pred = AgglomerativeClustering(n_clusters= 3, affinity='euclidean', linkage='w
 
 # Assign jobs to clusters
 df['Cluster'] = y_pred
-
-# Results
-print(df.head())
 
 def clusters():
     return df.reset_index().to_json(orient='records')
@@ -40,14 +36,6 @@ dt.fit(X_train, y_train)
 # Faire des prédictions sur l'ensemble de test
 y_pred = dt.predict(X_test)
 
-""""
-test = pd.DataFrame([[30000, 98000, 11]], columns=['Job_Duration','Data_Volume', 'Nbr_Components'])
-print("Testo:",test.head())
-test = pd.DataFrame(scaler.transform(test), columns=test.columns)
-
-cluster = dt.predict(test)
-print("Predicted cluster for new job:", cluster[0])
-"""
 
 def predict(jobDuration, dataVolume, nbrComponent):
     #load data into a DataFrame object:

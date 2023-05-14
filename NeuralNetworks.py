@@ -8,7 +8,6 @@ from keras.layers import Dense
 # Load the data
 df = pd.read_csv('DataMining/DW.csv', sep='|', lineterminator='\n', header=1)
 df.columns=['Job_Duration','Data_Volume', 'Nbr_Components']
-print(df)
 
 # Calculer l'IQR pour chaque colonne
 Q1 = df.quantile(0.25)
@@ -25,7 +24,6 @@ df = df[~(outliers_count | outliers_duration)]
 # normalize the data
 scaler = MinMaxScaler()
 df = pd.DataFrame(scaler.fit_transform(df), columns=df.columns)
-print(df)
 
 # Séparer les données en variables d'entrée (X) et variable de sortie (y)
 X = df[['Data_Volume', 'Nbr_Components']]
@@ -46,14 +44,11 @@ model.compile(loss='mse', optimizer='adam')
 # Entraîner le modèle
 model.fit(X_train, y_train, epochs=100, batch_size=32, verbose=0)
 
-print(model.summary())
-
 # Predict the values of y for X_test using the trained model
 y_pred = model.predict(X_test)
 
 #just a test
 res = pd.DataFrame([[71600, 9]], columns=['Data_Volume', 'Nbr_Components'])
-print(model.predict(res)[0])
 
 def predict(dataVolume, nbrComponent):
     #load data into a DataFrame object:

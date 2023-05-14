@@ -13,22 +13,14 @@ df = pd.read_csv('DataMining/GartnerData.csv', sep='|', lineterminator='\n', hea
 df = df.drop_duplicates()
 df.columns = ['Rate','Date','Product_Name','User_Function','Company_Size','Industry','Title','Text']
 
-print("df : ",df)
-
 # Compute the sentiment scores for each row in the Text column
 df['Sentiment'] = df['Text'].apply(lambda x: sia.polarity_scores(x)['compound'])
 
 # Compute descriptive statistics for the sentiment scores
 stats = df['Sentiment'].describe()
 
-# Print the descriptive statistics
-print(stats)
-
 # Create a new column with sentiment categories
 df['Sentiment_Category'] = pd.cut(df['Sentiment'], bins=[-1, -0.33, 0.33, 1], labels=['Negative', 'Neutral', 'Positive'])
-print("ola ",df.head)
-
-print( df.reset_index().to_json(orient='records'))
 
 def main():
     return df.reset_index().to_json(orient='records')
