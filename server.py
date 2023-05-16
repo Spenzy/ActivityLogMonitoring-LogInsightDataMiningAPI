@@ -9,7 +9,7 @@ app = Flask(__name__)
 CORS(app)
 
 # App routes
-@app.route('/', methods=['POST'])
+@app.route('/', methods=['GET'])
 def home():
     return "Welcome to LogInsight's DataMining model API"
 
